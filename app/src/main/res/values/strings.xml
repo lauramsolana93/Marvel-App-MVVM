@@ -1,0 +1,16 @@
+<resources>
+  <string name="app_name">Marvel App</string>
+  <string name="empty_data">There is no data for the selected character</string>
+  <string name="error_title">Error</string>
+  <string name="try_again">Do you want to try again?</string>
+  <string name="cancel_button">Cancel</string>
+  <string name="try_again_button">Try Again</string>
+  <string name="no_data">There is no data</string>
+  <string name="details">Details</string>
+  <string name="characters">Characters</string>
+  <string name="favourites">Favourites</string>
+  <string name="info">Info</string>
+  <string name="fav_button">Add to favourite</string>
+  <string name="no_connection">You don\'t have connection</string>
+  <string name="no_connection_title">No connection</string>
+</resources>
