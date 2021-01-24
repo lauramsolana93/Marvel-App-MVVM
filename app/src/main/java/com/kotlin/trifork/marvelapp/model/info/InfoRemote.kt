@@ -5,9 +5,9 @@ import com.kotlin.trifork.marvelapp.common.data.remote.datamodel.ApiSerieWrapper
 import com.kotlin.trifork.marvelapp.common.data.remote.provider.ServiceProvider
 import io.reactivex.Single
 
-class InfoRemote (
+class InfoRemote(
     private val serviceProvider: ServiceProvider
-): InfoDataContract.Remote {
+) : InfoDataContract.Remote {
 
     override fun getSerieById(id: Int): Single<ApiSerieWrapper> {
         return serviceProvider.getSerieById(id)

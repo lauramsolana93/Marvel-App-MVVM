@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.kotlin.trifork.marvelapp.R
-import com.kotlin.trifork.marvelapp.common.utils.CHARACTER_ID
 import com.kotlin.trifork.marvelapp.common.utils.COMICS
 import com.kotlin.trifork.marvelapp.common.utils.CONNECTION
 import com.kotlin.trifork.marvelapp.common.utils.SERIES
@@ -28,7 +27,7 @@ class FavouriteActivity : AppCompatActivity() {
         init()
     }
 
-    private fun init(){
+    private fun init() {
 
         getDataFromExtras()
         setUpViewPager()
@@ -36,15 +35,19 @@ class FavouriteActivity : AppCompatActivity() {
     }
 
     private fun getDataFromExtras() {
-        if(intent.extras != null){
+        if (intent.extras != null) {
             connection = intent.extras?.getBoolean(CONNECTION) ?: false
         }
     }
 
     private fun setUpViewPager() {
         viewPagerAdapter =
-            ViewPagerAdapter(listOf(ComicsFragment(),
-                SeriesFragment()), listOf(COMICS, SERIES), supportFragmentManager)
+            ViewPagerAdapter(
+                listOf(
+                    ComicsFragment(),
+                    SeriesFragment()
+                ), listOf(COMICS, SERIES), supportFragmentManager
+            )
         viewPager.adapter = viewPagerAdapter
     }
 
@@ -52,7 +55,7 @@ class FavouriteActivity : AppCompatActivity() {
         tabLayout.setupWithViewPager(viewPager, true)
     }
 
-    fun showLoading(){
+    fun showLoading() {
         progressLoading.playAnimation()
         progressLoading.visibility = View.VISIBLE
     }

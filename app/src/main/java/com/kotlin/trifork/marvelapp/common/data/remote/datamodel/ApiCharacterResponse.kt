@@ -1,15 +1,14 @@
 package com.kotlin.trifork.marvelapp.common.data.remote.datamodel
 
 import java.util.*
-import kotlin.collections.ArrayList
 
 data class ApiCharacterWrapperResponse(
-    var code : Int?,
+    var code: Int?,
     var status: String?,
     var copyright: String?,
     var attributionText: String?,
     var attributionHTML: String?,
-    var data : ApiCharacterContainer?,
+    var data: ApiCharacterContainer?,
     var etag: String?
 
 )

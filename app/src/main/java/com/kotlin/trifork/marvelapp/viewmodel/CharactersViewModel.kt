@@ -8,7 +8,7 @@ import com.kotlin.trifork.marvelapp.model.character.CharactersDataContract
 
 class CharactersViewModel constructor(
     private val repository: CharactersDataContract.Repository
-): ViewModel() {
+) : ViewModel() {
 
     val characters: MutableLiveData<CharacterWrapper> by lazy {
         repository.characters
@@ -18,7 +18,7 @@ class CharactersViewModel constructor(
         repository.errorDto
     }
 
-    fun getCharacters(){
+    fun getCharacters() {
         repository.getCharacters()
     }
 }

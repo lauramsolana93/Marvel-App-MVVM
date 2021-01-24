@@ -19,7 +19,7 @@ fun SerieEntity.mapToSerieDB() = SerieDB(
     thumbnail = thumbnails
 )
 
-fun List<SerieEntity>.mapToListOfSerieDB() : List<SerieDB> {
+fun List<SerieEntity>.mapToListOfSerieDB(): List<SerieDB> {
 
     val listSeriesDB = ArrayList<SerieDB>()
     this.forEach {
@@ -29,7 +29,7 @@ fun List<SerieEntity>.mapToListOfSerieDB() : List<SerieDB> {
     return listSeriesDB
 }
 
-fun List<ComicEntity>.mapToListOfComicDB() : List<ComicDB> {
+fun List<ComicEntity>.mapToListOfComicDB(): List<ComicDB> {
 
     val listSComicDB = ArrayList<ComicDB>()
     this.forEach {

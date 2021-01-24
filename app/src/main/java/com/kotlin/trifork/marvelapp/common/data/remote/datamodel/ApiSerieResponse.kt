@@ -1,14 +1,12 @@
 package com.kotlin.trifork.marvelapp.common.data.remote.datamodel
 
-import com.kotlin.trifork.marvelapp.common.data.dto.*
-
 data class ApiSerieWrapper(
-    var code : Int?,
+    var code: Int?,
     var status: String?,
     var copyright: String?,
     var attributionText: String?,
     var attributionHTML: String?,
-    var data : ApiSerieContainer?,
+    var data: ApiSerieContainer?,
     var etag: String?
 
 )

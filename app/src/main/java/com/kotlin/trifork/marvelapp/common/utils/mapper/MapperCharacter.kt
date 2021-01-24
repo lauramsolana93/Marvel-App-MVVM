@@ -55,7 +55,7 @@ fun ApiImage.mapToImage() = Image(
     extension = extension
 )
 
-fun ApiComicSummary.mapToComicSummary():  ComicSummary {
+fun ApiComicSummary.mapToComicSummary(): ComicSummary {
     var items = ArrayList<Summary>()
     this.items?.forEach {
         items.add(it.mapToSummary())
@@ -69,8 +69,7 @@ fun ApiComicSummary.mapToComicSummary():  ComicSummary {
 }
 
 
-
-fun ApiStorieSummary.mapToStorieSummary():  StorieSummary {
+fun ApiStorieSummary.mapToStorieSummary(): StorieSummary {
     var items = ArrayList<Summary>()
     this.items?.forEach {
         items.add(it.mapToSummary())
@@ -84,17 +83,18 @@ fun ApiStorieSummary.mapToStorieSummary():  StorieSummary {
 }
 
 
-
 fun ApiEventSummary.mapToEventSummary(): EventSummary {
     var items = ArrayList<Summary>()
     this.items?.forEach {
         items.add(it.mapToSummary())
     }
 
-    return EventSummary(available = available,
+    return EventSummary(
+        available = available,
         returned = returned,
         collectionURI = collectionURI,
-        items = items)
+        items = items
+    )
 }
 
 
@@ -104,10 +104,12 @@ fun ApiSerieSummary.mapToSerieSummary(): SeriesSummary {
         items.add(it.mapToSummary())
     }
 
-    return SeriesSummary(available = available,
+    return SeriesSummary(
+        available = available,
         returned = returned,
         collectionURI = collectionURI,
-        items = items)
+        items = items
+    )
 }
 
 fun ApiSummary.mapToSummary() = Summary(

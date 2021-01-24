@@ -13,7 +13,7 @@ class InfoLocal constructor(
 
 
     override fun addComicInfoToDB(comicDb: ComicDB): Completable {
-        return Completable.fromAction{
+        return Completable.fromAction {
             dataBase.favouritesDao().addComic(
                 ComicEntity(
                     comicDb.id,
@@ -28,7 +28,7 @@ class InfoLocal constructor(
     }
 
     override fun addSerieInfoToDB(serieDb: SerieDB): Completable {
-        return Completable.fromAction{
+        return Completable.fromAction {
             dataBase.favouritesDao().addSerie(
                 SerieEntity(
                     serieDb.id,

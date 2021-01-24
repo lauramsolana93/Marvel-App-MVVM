@@ -6,7 +6,7 @@ import io.reactivex.Single
 
 class SeriesLocal constructor(
     private val dataBase: DataBase
-): SeriesDataContract.Local {
+) : SeriesDataContract.Local {
 
     override fun getSeriesFromDB(): Single<List<SerieEntity>> {
         return dataBase.favouritesDao().getAllSeries()

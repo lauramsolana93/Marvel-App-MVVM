@@ -4,7 +4,6 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.kotlin.trifork.marvelapp.common.data.dto.Comic
 import com.kotlin.trifork.marvelapp.common.data.local.entity.ComicEntity
 import com.kotlin.trifork.marvelapp.common.data.local.entity.SerieEntity
 import io.reactivex.Single

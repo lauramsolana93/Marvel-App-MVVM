@@ -2,8 +2,6 @@ package com.kotlin.trifork.marvelapp.model.info
 
 import androidx.lifecycle.MutableLiveData
 import com.kotlin.trifork.marvelapp.common.data.dto.*
-import com.kotlin.trifork.marvelapp.common.data.local.entity.ComicEntity
-import com.kotlin.trifork.marvelapp.common.data.local.entity.SerieEntity
 import com.kotlin.trifork.marvelapp.common.data.remote.datamodel.ApiComicWrapper
 import com.kotlin.trifork.marvelapp.common.data.remote.datamodel.ApiSerieWrapper
 import io.reactivex.Completable

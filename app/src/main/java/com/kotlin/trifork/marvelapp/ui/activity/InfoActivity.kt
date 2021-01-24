@@ -17,7 +17,6 @@ import kotlinx.android.synthetic.main.activity_info.*
 import kotlinx.android.synthetic.main.loading_layout.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.net.URL
 
@@ -27,7 +26,7 @@ class InfoActivity : AppCompatActivity() {
 
     private var serieID: Int? = null
     private var comicID: Int? = null
-    var loadUrl  = ""
+    var loadUrl = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,42 +40,42 @@ class InfoActivity : AppCompatActivity() {
     }
 
     private fun getDataFromExtras() {
-        if(intent.extras != null){
+        if (intent.extras != null) {
             serieID = intent.extras?.getInt(SERIE_ID) ?: 0
             comicID = intent.extras?.getInt(COMIC_ID) ?: 0
         }
         getInfo()
     }
 
-    private fun setUpObservers(){
+    private fun setUpObservers() {
         infoViewModel.comicInfo.subscribe(this, this::setTypeOfInfo)
         infoViewModel.serieInfo.subscribe(this, this::setTypeOfInfo)
         infoViewModel.errorDto.subscribe(this, this::showError)
         infoViewModel.complete.subscribe(this, this::showHideLoading)
     }
 
-    private fun getInfo(){
-        if(serieID != 0){
+    private fun getInfo() {
+        if (serieID != 0) {
             infoViewModel.getSerieById(serieID ?: 0)
-        } else if(comicID != 0) {
+        } else if (comicID != 0) {
             infoViewModel.getComicById(comicID ?: 0)
         }
     }
 
-    private fun showHideLoading(complete: Boolean){
-        if(complete)  progressLoading.visibility = GONE
+    private fun showHideLoading(complete: Boolean) {
+        if (complete) progressLoading.visibility = GONE
         else progressLoading.visibility = VISIBLE
     }
 
-    private fun setTypeOfInfo(info: Any?){
+    private fun setTypeOfInfo(info: Any?) {
         showHideLoading(true)
-        when(info){
+        when (info) {
             is ComicWrapper -> {
                 titleInfo.text = info.data?.results?.get(0)?.title ?: ""
                 descriptionInfo.text = info.data?.results?.get(0)?.description ?: ""
                 val imageUrl = "${info.data?.results?.get(0)?.thumbnail?.path ?: ""}." +
                         "${info.data?.results?.get(0)?.thumbnail?.extension ?: ""}"
-                val start = imageUrl.subSequence(0,4)
+                val start = imageUrl.subSequence(0, 4)
                 loadUrl = "${start}s${imageUrl.subSequence(4, imageUrl.length)}"
 
             }
@@ -85,7 +84,7 @@ class InfoActivity : AppCompatActivity() {
                 descriptionInfo.text = info.data?.results?.get(0)?.description ?: ""
                 val imageUrl = "${info.data?.results?.get(0)?.thumbnail?.path ?: ""}." +
                         "${info.data?.results?.get(0)?.thumbnail?.extension ?: ""}"
-                val start = imageUrl.subSequence(0,4)
+                val start = imageUrl.subSequence(0, 4)
                 loadUrl = "${start}s${imageUrl.subSequence(4, imageUrl.length)}"
             }
         }
@@ -103,10 +102,10 @@ class InfoActivity : AppCompatActivity() {
     }
 
 
-    private fun setUpListeners(){
+    private fun setUpListeners() {
         favButton.setOnClickListener {
             showHideLoading(false)
-            if(serieID != 0 && serieID != null){
+            if (serieID != 0 && serieID != null) {
                 GlobalScope.async {
                     val imageUrl = URL(loadUrl)
                     val inputStream = imageUrl.openStream()
@@ -122,7 +121,7 @@ class InfoActivity : AppCompatActivity() {
                 }
 
             }
-            if(comicID != 0 && comicID != null){
+            if (comicID != 0 && comicID != null) {
                 GlobalScope.async {
                     val imageUrl = URL(loadUrl)
                     val inputStream = imageUrl.openStream()
@@ -141,17 +140,18 @@ class InfoActivity : AppCompatActivity() {
     }
 
 
-
-    private fun showError(error: ErrorDto){
+    private fun showError(error: ErrorDto) {
         val builder = AlertDialog.Builder(this)
         builder.setTitle(getString(R.string.error_title))
         builder.setMessage(getString(R.string.try_again))
-        builder.setPositiveButton(getString(R.string.cancel_button)
+        builder.setPositiveButton(
+            getString(R.string.cancel_button)
         ) { dialog, _ ->
             dialog.dismiss()
         }
 
-        builder.setNegativeButton(getString(R.string.try_again_button)
+        builder.setNegativeButton(
+            getString(R.string.try_again_button)
         ) { _, _ ->
             getInfo()
         }

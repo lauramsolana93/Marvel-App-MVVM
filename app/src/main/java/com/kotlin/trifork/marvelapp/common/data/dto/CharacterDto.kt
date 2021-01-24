@@ -1,15 +1,14 @@
 package com.kotlin.trifork.marvelapp.common.data.dto
 
 import java.util.*
-import kotlin.collections.ArrayList
 
 data class CharacterWrapper(
-    var code : Int?,
+    var code: Int?,
     var status: String?,
     var copyright: String?,
     var attributionText: String?,
     var attributionHTML: String?,
-    var data : CharacterContainer?,
+    var data: CharacterContainer?,
     var etag: String?
 
 )

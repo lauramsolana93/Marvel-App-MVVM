@@ -9,7 +9,7 @@ import com.kotlin.trifork.marvelapp.model.comics.ComicsDataContract
 
 class ComicsViewModel constructor(
     private val repository: ComicsDataContract.Repository
-): ViewModel() {
+) : ViewModel() {
 
     val comic: MutableLiveData<ComicWrapper> by lazy {
         repository.comic

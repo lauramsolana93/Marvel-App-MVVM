@@ -6,7 +6,7 @@ import io.reactivex.Single
 
 class CharactersRemote(
     private val serviceProvider: ServiceProvider
-): CharactersDataContract.Remote {
+) : CharactersDataContract.Remote {
 
     override fun getCharacters(): Single<ApiCharacterWrapperResponse> {
         return serviceProvider.getCharacters()

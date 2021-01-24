@@ -19,15 +19,15 @@ class SeriesViewModel constructor(
         repository.errorDto
     }
 
-    val serieDB : MutableLiveData<List<SerieDB>> by lazy {
+    val serieDB: MutableLiveData<List<SerieDB>> by lazy {
         repository.serieDB
     }
 
-    fun getSerieByCharacterId(id: Int){
+    fun getSerieByCharacterId(id: Int) {
         repository.getSeriesByCharacterId(id)
     }
 
-    fun getSeriesFromDB(){
+    fun getSeriesFromDB() {
         repository.getSeriesFromDB()
     }
 }

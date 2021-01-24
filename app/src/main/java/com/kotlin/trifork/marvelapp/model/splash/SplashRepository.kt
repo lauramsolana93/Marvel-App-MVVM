@@ -3,7 +3,6 @@ package com.kotlin.trifork.marvelapp.model.splash
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import com.kotlin.trifork.marvelapp.common.utils.helper.ConnectivityHelper
-import io.reactivex.disposables.Disposable
 
 class SplashRepository : SplashDataContract.Repository {
 

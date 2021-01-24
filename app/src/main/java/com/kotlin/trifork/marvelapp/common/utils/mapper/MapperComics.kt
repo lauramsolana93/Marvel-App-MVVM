@@ -123,17 +123,19 @@ private fun ApiComicPrice.mapToComicPrice() = ComicPrice(
     price = price
 )
 
- fun ApiCreatorList.mapToCreatorList() : CreatorList{
+fun ApiCreatorList.mapToCreatorList(): CreatorList {
     var items = ArrayList<CreatorSummary>()
 
     this.items?.forEach {
         items.add(it.mapToCreatorSummary())
     }
 
-    return CreatorList(available = available,
+    return CreatorList(
+        available = available,
         returned = returned,
         collectionURI = collectionURI,
-        items = items)
+        items = items
+    )
 }
 
 private fun ApiCreatorSummary.mapToCreatorSummary() = CreatorSummary(
@@ -142,7 +144,7 @@ private fun ApiCreatorSummary.mapToCreatorSummary() = CreatorSummary(
     role = role
 )
 
- fun ApiCharactersList.mapToCharacterList() : CharactersList {
+fun ApiCharactersList.mapToCharacterList(): CharactersList {
     var items = ArrayList<CharacterSummary>()
     this.items?.forEach {
         items.add(it.mapToCharacterSummary())
@@ -162,7 +164,7 @@ private fun ApiCharacterSummary.mapToCharacterSummary() = CharacterSummary(
     role = role
 )
 
-private fun ApiStoryList.mapToStoryList() : StoryList {
+private fun ApiStoryList.mapToStoryList(): StoryList {
     var items = ArrayList<StorySummary>()
     this.items?.forEach {
         items.add(it.mapToStorySummary())
@@ -182,7 +184,7 @@ private fun ApiStorySummary.mapToStorySummary() = StorySummary(
     type = type
 )
 
-private fun ApiEventsList.mapToEventsList() : EventsList {
+private fun ApiEventsList.mapToEventsList(): EventsList {
     var items = ArrayList<EventsSummary>()
     this.items?.forEach {
         items.add(it.mapToEventsSummary())

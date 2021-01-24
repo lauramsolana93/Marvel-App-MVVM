@@ -55,11 +55,12 @@ class CharactersActivity : AppCompatActivity(),
     }
 
     private fun fillAdapter(characterWrapper: CharacterWrapper) {
-        if(characterWrapper != null){
+        if (characterWrapper != null) {
             hideLoading()
             charactersRv.visibility = VISIBLE
             emptyCharacters.visibility = GONE
-            charactersAdapter = CharactersAdapter(characterWrapper.data?.results ?: emptyList(), this, this)
+            charactersAdapter =
+                CharactersAdapter(characterWrapper.data?.results ?: emptyList(), this, this)
             charactersRv.adapter = charactersAdapter
         } else {
             emptyCharacters.visibility = VISIBLE
@@ -77,7 +78,7 @@ class CharactersActivity : AppCompatActivity(),
         startActivity(intent)
     }
 
-    private fun showLoading(){
+    private fun showLoading() {
         progressLoading.playAnimation()
         progressLoading.visibility = VISIBLE
     }
@@ -87,16 +88,18 @@ class CharactersActivity : AppCompatActivity(),
         progressLoading.visibility = View.GONE
     }
 
-    private fun showError(error: ErrorDto){
+    private fun showError(error: ErrorDto) {
         val builder = AlertDialog.Builder(this)
         builder.setTitle(getString(R.string.error_title))
         builder.setMessage(getString(R.string.try_again))
-        builder.setPositiveButton(getString(R.string.cancel_button)
+        builder.setPositiveButton(
+            getString(R.string.cancel_button)
         ) { dialog, _ ->
             dialog.dismiss()
         }
 
-        builder.setNegativeButton(getString(R.string.try_again_button)
+        builder.setNegativeButton(
+            getString(R.string.try_again_button)
         ) { _, _ ->
             getCharacters()
         }

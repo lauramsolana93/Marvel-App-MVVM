@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import com.kotlin.trifork.marvelapp.common.data.dto.ComicDB
 import com.kotlin.trifork.marvelapp.common.data.dto.ComicWrapper
 import com.kotlin.trifork.marvelapp.common.data.dto.ErrorDto
-import com.kotlin.trifork.marvelapp.common.data.dto.SerieDB
 import com.kotlin.trifork.marvelapp.common.data.local.entity.ComicEntity
 import com.kotlin.trifork.marvelapp.common.data.remote.datamodel.ApiComicWrapper
 import io.reactivex.Single

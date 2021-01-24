@@ -6,7 +6,7 @@ import io.reactivex.Single
 
 class ComicLocal constructor(
     private val database: DataBase
-): ComicsDataContract.Local {
+) : ComicsDataContract.Local {
 
     override fun getComicsFromDB(): Single<List<ComicEntity>> {
         return database.favouritesDao().getAllComics()

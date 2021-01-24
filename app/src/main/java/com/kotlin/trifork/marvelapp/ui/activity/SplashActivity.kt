@@ -24,7 +24,7 @@ class SplashActivity : AppCompatActivity() {
         setUpObservers()
     }
 
-    private fun checkConnectivity(){
+    private fun checkConnectivity() {
         loading.playAnimation()
         splashViewModel.checkNetworkStatus(this)
     }
@@ -35,7 +35,7 @@ class SplashActivity : AppCompatActivity() {
 
     private fun navigateToNextScreen(isConnected: Boolean?) {
         loading.cancelAnimation()
-        if(isConnected == true){
+        if (isConnected == true) {
             var intent = Intent(this, CharactersActivity::class.java)
             startActivity(intent)
             finish()

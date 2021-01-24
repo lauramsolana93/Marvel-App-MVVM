@@ -120,7 +120,8 @@ val database: Module = module {
         Room.databaseBuilder(
             androidContext(),
             DataBase::class.java,
-            "favourite.db")
+            "favourite.db"
+        )
             .build()
     }
 }

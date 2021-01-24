@@ -4,12 +4,10 @@ import androidx.lifecycle.MutableLiveData
 import com.kotlin.trifork.marvelapp.common.data.dto.ErrorDto
 import com.kotlin.trifork.marvelapp.common.data.dto.SerieDB
 import com.kotlin.trifork.marvelapp.common.data.dto.SerieWrapper
-import com.kotlin.trifork.marvelapp.common.data.local.entity.ComicEntity
 import com.kotlin.trifork.marvelapp.common.data.local.entity.SerieEntity
 import com.kotlin.trifork.marvelapp.common.data.remote.datamodel.ApiSerieWrapper
 import io.reactivex.Single
 import io.reactivex.disposables.Disposable
-import org.w3c.dom.Entity
 
 interface SeriesDataContract {
 

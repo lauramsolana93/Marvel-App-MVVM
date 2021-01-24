@@ -18,7 +18,7 @@ class SeriesAdapter(
     val serieDbList: List<SerieDB?>?,
     val context: Context,
     val listener: OnItemClickListener<Any>
-): RecyclerView.Adapter<SeriesAdapter.SeriesViewHolder>() {
+) : RecyclerView.Adapter<SeriesAdapter.SeriesViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SeriesViewHolder {
         val view = LayoutInflater.from(context)
@@ -26,15 +26,15 @@ class SeriesAdapter(
         return SeriesViewHolder(view)
     }
 
-    override fun getItemCount(): Int{
-        if(seriesList != null)  return seriesList?.size
+    override fun getItemCount(): Int {
+        if (seriesList != null) return seriesList?.size
         else if (serieDbList != null) return serieDbList?.size
         return 0
     }
 
     override fun onBindViewHolder(holder: SeriesViewHolder, position: Int) {
-        if(seriesList != null){
-            if(seriesList[position] != null){
+        if (seriesList != null) {
+            if (seriesList[position] != null) {
                 val serie = seriesList[position]
                 holder.bind(serie!!)
 
@@ -42,8 +42,8 @@ class SeriesAdapter(
                     listener.onSerieClicked(serie)
                 }
             }
-        } else if(serieDbList != null) {
-            if(serieDbList[position] != null){
+        } else if (serieDbList != null) {
+            if (serieDbList[position] != null) {
                 val serie = serieDbList[position]
                 holder.bind(serie!!)
 
@@ -56,18 +56,19 @@ class SeriesAdapter(
 
     }
 
-    class SeriesViewHolder(view: View): RecyclerView.ViewHolder(view) {
-        var image : ImageView = view.findViewById(R.id.detailsImage)
-        var title : TextView = view.findViewById(R.id.detailsTitle)
+    class SeriesViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        var image: ImageView = view.findViewById(R.id.detailsImage)
+        var title: TextView = view.findViewById(R.id.detailsTitle)
         var cardView: CardView = view.findViewById(R.id.detailsCardView)
         var loadUrl = ""
-        fun bind(serie: Any){
-            when(serie){
+        fun bind(serie: Any) {
+            when (serie) {
                 is Serie -> {
                     title.text = serie.title
 
-                    val imageUrl = "${serie.thumbnail?.path ?: ""}.${serie.thumbnail?.extension ?: ""}"
-                    val start = imageUrl.subSequence(0,4)
+                    val imageUrl =
+                        "${serie.thumbnail?.path ?: ""}.${serie.thumbnail?.extension ?: ""}"
+                    val start = imageUrl.subSequence(0, 4)
                     loadUrl = "${start}s${imageUrl.subSequence(4, imageUrl.length)}"
                     Glide
                         .with(itemView)

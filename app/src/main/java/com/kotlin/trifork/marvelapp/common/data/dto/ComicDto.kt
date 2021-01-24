@@ -1,12 +1,12 @@
 package com.kotlin.trifork.marvelapp.common.data.dto
 
 data class ComicWrapper(
-    var code : Int?,
+    var code: Int?,
     var status: String?,
     var copyright: String?,
     var attributionText: String?,
     var attributionHTML: String?,
-    var data : ComicContainer?,
+    var data: ComicContainer?,
     var etag: String?
 
 )
@@ -52,6 +52,7 @@ data class Comic(
 
 
 )
+
 data class TextObjects(
     var type: String?,
     var language: String?,

@@ -13,7 +13,7 @@ open class ApplicationMarvel : Application() {
 
     private fun initDI() {
         startKoin {
-            androidContext( this@ApplicationMarvel)
+            androidContext(this@ApplicationMarvel)
         }
     }
 }

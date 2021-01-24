@@ -1,7 +1,6 @@
 package com.kotlin.trifork.marvelapp.ui.adapter
 
 import android.content.Context
-import android.text.Layout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,7 +27,7 @@ class CharactersAdapter(
     override fun getItemCount(): Int = characters.size
 
     override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
-        if(characters[position] != null){
+        if (characters[position] != null) {
             val character = characters[position]
             holder.bind(character!!)
 
@@ -42,14 +41,14 @@ class CharactersAdapter(
 
     }
 
-    class CharacterViewHolder(view: View): RecyclerView.ViewHolder(view) {
-        var characterImage : ImageView = view.findViewById(R.id.characterImage)
-        var characterName : TextView = view.findViewById(R.id.characterName)
+    class CharacterViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        var characterImage: ImageView = view.findViewById(R.id.characterImage)
+        var characterName: TextView = view.findViewById(R.id.characterName)
         var cardView: CardView = view.findViewById(R.id.characterCardView)
-        fun bind(character: CharacterDto){
+        fun bind(character: CharacterDto) {
             characterName.text = character.name
             val imageUrl = "${character.thumbnail?.path}.${character.thumbnail?.extension}"
-            val start = imageUrl.subSequence(0,4)
+            val start = imageUrl.subSequence(0, 4)
             val loadUrl = "${start}s${imageUrl.subSequence(4, imageUrl.length)}"
             Glide
                 .with(itemView)

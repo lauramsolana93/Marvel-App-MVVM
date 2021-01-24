@@ -3,7 +3,8 @@ package com.kotlin.trifork.marvelapp.common.data.local
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.kotlin.trifork.marvelapp.common.data.local.dao.FavouritesDao
-import com.kotlin.trifork.marvelapp.common.data.local.entity.*
+import com.kotlin.trifork.marvelapp.common.data.local.entity.ComicEntity
+import com.kotlin.trifork.marvelapp.common.data.local.entity.SerieEntity
 
 @Database(
     entities = [

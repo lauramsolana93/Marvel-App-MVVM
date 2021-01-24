@@ -3,14 +3,12 @@ package com.kotlin.trifork.marvelapp.model.info
 import androidx.lifecycle.MutableLiveData
 import com.kotlin.trifork.marvelapp.common.data.dto.*
 import com.kotlin.trifork.marvelapp.common.utils.mapper.maToComicWrapper
-import com.kotlin.trifork.marvelapp.common.utils.mapper.mapToComicDb
-import com.kotlin.trifork.marvelapp.common.utils.mapper.mapToSerieDB
 import com.kotlin.trifork.marvelapp.common.utils.mapper.mapToSeriesWrapper
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
-class InfoRepository (
+class InfoRepository(
     private val remote: InfoDataContract.Remote,
     private val local: InfoDataContract.Local
 ) : InfoDataContract.Repository {
@@ -39,15 +37,14 @@ class InfoRepository (
     }
 
 
-
     override fun getSerieById(id: Int): Disposable {
         return remote.getSerieById(id)
             .map { it.mapToSeriesWrapper() }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
-                {data -> serieInfo.value = data},
-                {error -> errorDto.value = ErrorDto(error.message) }
+                { data -> serieInfo.value = data },
+                { error -> errorDto.value = ErrorDto(error.message) }
             )
     }
 
@@ -57,8 +54,8 @@ class InfoRepository (
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
-                {data -> comicInfo.value = data},
-                {error -> errorDto.value = ErrorDto(error.message) }
+                { data -> comicInfo.value = data },
+                { error -> errorDto.value = ErrorDto(error.message) }
             )
     }
 
@@ -67,7 +64,7 @@ class InfoRepository (
         return local.addComicInfoToDB(comicDb)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .onErrorComplete {throwable: Throwable ->
+            .onErrorComplete { throwable: Throwable ->
                 errorDto.value = ErrorDto(throwable.message)
                 complete.value = false
                 true
@@ -82,7 +79,7 @@ class InfoRepository (
         return local.addSerieInfoToDB(serieDB)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .onErrorComplete {throwable: Throwable ->
+            .onErrorComplete { throwable: Throwable ->
                 errorDto.value = ErrorDto(throwable.message)
                 true
             }

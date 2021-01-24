@@ -1,7 +1,10 @@
 package com.kotlin.trifork.marvelapp.common.utils.mapper
 
 import com.kotlin.trifork.marvelapp.common.data.dto.*
-import com.kotlin.trifork.marvelapp.common.data.remote.datamodel.*
+import com.kotlin.trifork.marvelapp.common.data.remote.datamodel.ApiSerie
+import com.kotlin.trifork.marvelapp.common.data.remote.datamodel.ApiSerieContainer
+import com.kotlin.trifork.marvelapp.common.data.remote.datamodel.ApiSerieWrapper
+import com.kotlin.trifork.marvelapp.common.data.remote.datamodel.ApiStorySummary
 
 fun ApiSerieWrapper.mapToSeriesWrapper() = SerieWrapper(
     code = code,

@@ -33,11 +33,11 @@ class InfoViewModel constructor(
         repository.getComicById(id)
     }
 
-    fun addSerieInfoToDb(serieDb: SerieDB){
+    fun addSerieInfoToDb(serieDb: SerieDB) {
         repository.addSerieInfoToDB(serieDb)
     }
 
-    fun addComicInfoToDb(comicDb: ComicDB){
+    fun addComicInfoToDb(comicDb: ComicDB) {
         repository.addComicInfoToDB(comicDb)
     }
 

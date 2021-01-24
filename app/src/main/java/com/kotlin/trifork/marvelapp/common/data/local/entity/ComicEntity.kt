@@ -3,7 +3,6 @@ package com.kotlin.trifork.marvelapp.common.data.local.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.kotlin.trifork.marvelapp.common.data.remote.datamodel.ApiSummary
 
 @Entity(tableName = "comic")
 data class ComicEntity(

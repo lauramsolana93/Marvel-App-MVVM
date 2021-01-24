@@ -1,12 +1,12 @@
 package com.kotlin.trifork.marvelapp.common.data.dto
 
 data class SerieWrapper(
-    var code : Int?,
+    var code: Int?,
     var status: String?,
     var copyright: String?,
     var attributionText: String?,
     var attributionHTML: String?,
-    var data : SerieContainer?,
+    var data: SerieContainer?,
     var etag: String?
 
 )

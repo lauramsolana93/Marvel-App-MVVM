@@ -5,11 +5,13 @@ import okhttp3.Interceptor
 
 fun headersInterceptor() = Interceptor { chain ->
 
-    chain.proceed(chain.request().newBuilder()
-        .addHeader("Accept", "application/json")
-        .addHeader("Accept-Language", "en")
-        .addHeader("Content-Type", "application/json")
-        .build())
+    chain.proceed(
+        chain.request().newBuilder()
+            .addHeader("Accept", "application/json")
+            .addHeader("Accept-Language", "en")
+            .addHeader("Content-Type", "application/json")
+            .build()
+    )
 }
 
 fun queryInterceptor() = Interceptor { chain ->
@@ -18,9 +20,13 @@ fun queryInterceptor() = Interceptor { chain ->
     val timeStamp = System.currentTimeMillis()
     var url = originalRequest.url.newBuilder()
         .addQueryParameter("apikey", BuildConfig.PUBLIC_KEY_MARVEL)
-        .addQueryParameter("hash",
-            generateHash(timeStamp.toString() + BuildConfig.PRIVATE_KEY_MARVEL +
-                    BuildConfig.PUBLIC_KEY_MARVEL ))
+        .addQueryParameter(
+            "hash",
+            generateHash(
+                timeStamp.toString() + BuildConfig.PRIVATE_KEY_MARVEL +
+                        BuildConfig.PUBLIC_KEY_MARVEL
+            )
+        )
         .addQueryParameter("ts", "$timeStamp")
         .build()
 
