@@ -12,19 +12,21 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.kotlin.trifork.marvelapp.R
-import com.kotlin.trifork.marvelapp.common.data.dto.*
+import com.kotlin.trifork.marvelapp.common.data.dto.ErrorDto
+import com.kotlin.trifork.marvelapp.common.data.dto.Serie
+import com.kotlin.trifork.marvelapp.common.data.dto.SerieDB
+import com.kotlin.trifork.marvelapp.common.data.dto.SerieWrapper
 import com.kotlin.trifork.marvelapp.common.utils.SERIE_ID
 import com.kotlin.trifork.marvelapp.common.utils.helper.subscribe
 import com.kotlin.trifork.marvelapp.di.injectModule
 import com.kotlin.trifork.marvelapp.ui.activity.DetailsActivity
-import com.kotlin.trifork.marvelapp.ui.activity.FavouriteActivity
 import com.kotlin.trifork.marvelapp.ui.activity.InfoActivity
 import com.kotlin.trifork.marvelapp.ui.adapter.SeriesAdapter
 import com.kotlin.trifork.marvelapp.viewmodel.SeriesViewModel
 import kotlinx.android.synthetic.main.fragment_series.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class SeriesFragment : Fragment(), SeriesAdapter.OnItemClickListener<Any>{
+class SeriesFragment : Fragment(), SeriesAdapter.OnItemClickListener<Any> {
 
     private val seriesViewModel: SeriesViewModel by viewModel()
     private lateinit var seriesAdapter: SeriesAdapter
@@ -51,14 +53,15 @@ class SeriesFragment : Fragment(), SeriesAdapter.OnItemClickListener<Any>{
     private fun bindViews(layout: View) {
         seriesRv = layout.findViewById(R.id.seriesRv)
     }
-    private fun setUpRecyclerView(){
+
+    private fun setUpRecyclerView() {
         seriesRv.setHasFixedSize(true)
         seriesRv.layoutManager = GridLayoutManager(activity, 2)
     }
 
-    private fun getSeries(){
+    private fun getSeries() {
         (activity!! as DetailsActivity).showLoading()
-        if(!(activity!! as DetailsActivity).connection){
+        if (!(activity!! as DetailsActivity).connection) {
             seriesViewModel.getSeriesFromDB()
         } else {
             seriesViewModel.getSerieByCharacterId((activity!! as DetailsActivity).characterID)
@@ -67,20 +70,20 @@ class SeriesFragment : Fragment(), SeriesAdapter.OnItemClickListener<Any>{
     }
 
 
-    private fun setUpObserveComic(){
+    private fun setUpObserveComic() {
         seriesViewModel.serie.subscribe(viewLifecycleOwner, this::fillAdapter)
         seriesViewModel.error.subscribe(viewLifecycleOwner, this::showError)
         seriesViewModel.serieDB.subscribe(viewLifecycleOwner, this::fillAdapterFromDB)
     }
 
 
-
-    private fun fillAdapter(serieWrapper: SerieWrapper){
+    private fun fillAdapter(serieWrapper: SerieWrapper) {
         (activity!! as DetailsActivity).hideLoading()
-        if(serieWrapper != null && serieWrapper.data?.results!!.isNotEmpty()){
+        if (serieWrapper != null && serieWrapper.data?.results!!.isNotEmpty()) {
             emptyTextSeries.visibility = GONE
             seriesRv.visibility = VISIBLE
-            seriesAdapter = SeriesAdapter(serieWrapper.data?.results ?: emptyList(),null, activity!!, this)
+            seriesAdapter =
+                SeriesAdapter(serieWrapper.data?.results ?: emptyList(), null, activity!!, this)
             seriesRv.adapter = seriesAdapter
         } else {
             emptyTextSeries.visibility = VISIBLE
@@ -90,12 +93,12 @@ class SeriesFragment : Fragment(), SeriesAdapter.OnItemClickListener<Any>{
 
     }
 
-    private fun fillAdapterFromDB(serieDB: List<SerieDB>){
+    private fun fillAdapterFromDB(serieDB: List<SerieDB>) {
         (activity!! as DetailsActivity).hideLoading()
-        if(serieDB.isNotEmpty()){
+        if (serieDB.isNotEmpty()) {
             emptyTextSeries.visibility = GONE
             seriesRv.visibility = VISIBLE
-            seriesAdapter = SeriesAdapter(null,serieDB, activity!!, this)
+            seriesAdapter = SeriesAdapter(null, serieDB, activity!!, this)
             seriesRv.adapter = seriesAdapter
         } else {
             emptyTextSeries.visibility = VISIBLE
@@ -112,16 +115,18 @@ class SeriesFragment : Fragment(), SeriesAdapter.OnItemClickListener<Any>{
 
     }
 
-    private fun showError(error: ErrorDto){
+    private fun showError(error: ErrorDto) {
         val builder = AlertDialog.Builder(activity)
         builder.setTitle(getString(R.string.error_title))
         builder.setMessage(getString(R.string.try_again))
-        builder.setPositiveButton(getString(R.string.cancel_button)
+        builder.setPositiveButton(
+            getString(R.string.cancel_button)
         ) { dialog, _ ->
             dialog.dismiss()
         }
 
-        builder.setNegativeButton(getString(R.string.try_again_button)
+        builder.setNegativeButton(
+            getString(R.string.try_again_button)
         ) { _, _ ->
             getSeries()
         }
@@ -131,7 +136,7 @@ class SeriesFragment : Fragment(), SeriesAdapter.OnItemClickListener<Any>{
 
     override fun onSerieClicked(item: Any) {
 
-        when(item){
+        when (item) {
             is SerieDB -> {
                 var errorDto = ErrorDto(getString(R.string.no_connection))
                 (activity!! as DetailsActivity).noConnection(errorDto)
@@ -139,7 +144,6 @@ class SeriesFragment : Fragment(), SeriesAdapter.OnItemClickListener<Any>{
             is Serie -> {
                 val intent = Intent(requireActivity(), InfoActivity::class.java)
                 intent.putExtra(SERIE_ID, item.id)
-                startActivity(intent)
                 startActivity(intent)
             }
         }
