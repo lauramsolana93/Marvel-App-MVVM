@@ -10,8 +10,8 @@ This app has 4 different Activities
 
 0. Splash Activity: The app just checks the connectivity in this activity
 
-1. Characters activity: The user will a list of characters with an image and the name
-of each character. On click one character we are going to navigate to the following activity
+1. Characters activity: The user will see a list of characters with an image and the name
+for each character. On click one character we are going to navigate to the following activity
 
 2. Details activity: This activity contains a view pager with two tabs. Comics and Series.
 In these fragments are going to be show comics and series filtered by the character selected.
